@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- ^ Tells the browser "this is a modern HTML page". Always the very first line. -->
+
+<!-- Everything on the page lives inside <html> ... </html>. -->
+<html>
+
+  <!-- ===================== HEAD ===================== -->
+  <!-- The <head> is info ABOUT the page. Nothing in here shows up on the page itself. -->
+  <head>
+
+    <!-- charset="utf-8" lets the page show any letter or emoji correctly (é, ж, 😺). -->
+    <meta charset="utf-8">
+
+    <!-- The text shown on the browser tab. -->
+    <title>toturial shi</title>
+
+    <!-- <style> holds CSS: the rules for how things LOOK (colours, sizes, spacing). -->
+    <style>
+      /* "body" means: apply these rules to the whole page. */
+      body {
+        /* Paints the page background light sky blue. */
+        background-color: lightskyblue;
+      }
+    </style>
+
+  <!-- Closes the head. After this, everything is stuff you can SEE. -->
+  </head>
+
+  <!-- ===================== BODY ===================== -->
+  <!-- The <body> is everything visible on the page. -->
+  <!-- FIX: the <h1> used to sit before <body>. Visible things belong inside the body. -->
+  <body>
+
+    <!-- <h1> is the biggest heading. Use one per page, like a title. -->
+    <h1>my website</h1>
+
+    <!-- <p> is a paragraph of text. -->
+    <p>i am learning html and i built this page myself.
+    and this will be a cool website</p>
+
+    <!-- FIX: this one used to end with a capital </P>. It worked, but lowercase is the habit to keep. -->
+    <p>anyways this is my site</p>
+
+    <!-- <img> shows a picture. src = where the file is. alt = text for people who can't see images. -->
+    <!-- <img> has no closing tag; it's a single tag. -->
+    <img src="neocities.png" alt="the neocities cat">
+
+    <!-- <a> is a link. href = where it goes. The words between <a> and </a> are what you click. -->
+    <!-- FIX: the old link was missing its closing ">" and had a stray "<a/", so it broke. -->
+    <p>my favorite place on the web is <a href="https://www.neocities.org">neo cities</a>.</p>
+
+    <!-- <h2> is a smaller heading, for a section. -->
+    <!-- FIX: this list used to be AFTER </html>, outside the page. It's moved inside the body. -->
+    <h2>things i like</h2>
+
+    <!-- <ul> is a bullet list ("unordered list"). Each <li> is one bullet ("list item"). -->
+    <ul>
+      <li>making websites</li>
+      <li>cats</li>
+      <li>gaming</li>
+    </ul>
+
+
+    <!-- ============================================================== -->
+    <!-- ==================  WINAMP (Webamp) STARTS  ================== -->
+    <!-- ============================================================== -->
+    <!-- Webamp is Winamp (a 1998 music player) rebuilt to run in a browser. -->
+    <!-- Code: https://github.com/captbaritone/webamp                        -->
+
+    <!-- Another heading and paragraph, so people know what the player is. -->
+    <h2>my winamp</h2>
+    <p>press play! you can also drag mp3 files from your computer onto it.</p>
+
+    <!-- An empty box with a name (id). Webamp will put itself here. -->
+    <!-- id="winamp-spot" is like a name tag, so the code below can find this exact box. -->
+    <div id="winamp-spot"></div>
+
+    <!-- <script src="..."> downloads someone else's JavaScript and runs it. -->
+    <!-- This loads the whole Winamp program from unpkg.com (a free site that hosts code). -->
+    <!-- "@2.3.1" pins the version, so an update can never break your page by surprise. -->
+    <script src="https://unpkg.com/webamp@2.3.1/built/webamp.bundle.min.js"></script>
+
+    <!-- A <script> with no src means "run the JavaScript written right here". -->
+    <script>
+      // In JavaScript, lines starting with // are comments. The browser skips them.
+
+      // ---- YOUR SONGS ----
+      // "var mySongs = [ ... ];" makes a list called mySongs.
+      // [ ] is a list. { } is one item with named parts.
+      // Each song needs:
+      //   metaData: { artist: "...", title: "..." }  -> the text Winamp displays
+      //   url: "..."                                -> where the mp3 file is
+      //
+      // IMPORTANT: the mp3 must be in YOUR Neocities site (e.g. a "music" folder),
+      // OR on a site that allows other websites to play its files. Most sites
+      // (catbox, Google Drive, YouTube) do NOT, and the song will just stay silent.
+      //
+      // To add a song: remove the two // at the start of the example lines,
+      // then change the words. Put a comma between songs.
+      var mySongs = [
+        { metaData: { artist: "Me", title: "Old Home Not Yet Built" }, url: "music/old-home-not-yet-built.mp3" }
+        // , { metaData: { artist: "Me", title: "Another One" }, url: "music/another-one.mp3" }
+      ];
+
+      // The Webamp code we loaded above made something called window.Webamp.
+      // Depending on version it's either window.Webamp.default or window.Webamp itself.
+      // "||" means "or": use the first one if it exists, otherwise the second.
+      var Webamp = window.Webamp.default || window.Webamp;
+
+      // "if (...) { ... }" only runs the code inside { } when the check is true.
+      // browserIsSupported() checks the browser is new enough to run Winamp.
+      if (Webamp.browserIsSupported()) {
+
+        // "new Webamp({...})" builds a Winamp player.
+        // initialTracks: mySongs -> start it with our song list.
+        var webamp = new Webamp({ initialTracks: mySongs });
+
+        // document.getElementById("winamp-spot") finds the empty box by its name tag.
+        // renderWhenReady(...) draws the player there once everything has loaded.
+        webamp.renderWhenReady(document.getElementById("winamp-spot"));
+      }
+      // Tip: Winamp windows float over the page. Drag them by their title bars.
+    </script>
+    <!-- ============================================================== -->
+    <!-- ===================  WINAMP (Webamp) ENDS  =================== -->
+    <!-- ============================================================== -->
+
+  <!-- Closes the body: the end of the visible page. -->
+  </body>
+
+<!-- Closes the html: the end of the whole file. Nothing goes after this. -->
+</html>
